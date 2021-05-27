@@ -7,16 +7,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.Link;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 @RestController
 @Slf4j
@@ -29,16 +22,16 @@ public class EventServiceController {
 
     @GetMapping
     @ApiOperation(response = Iterable.class, value = "Get all events")
-    public CollectionModel<Event> getAllEvents() {
+    public Iterable<Event> getAllEvents() {
         log.info("GET all events");
-        return addLinksToEvents(eventService.getAllEvents());
+        return eventService.getAllEvents();
     }
 
     @GetMapping("/title/{title}")
     @ApiOperation(response = Iterable.class, value = "Get events by title")
     public Iterable<Event> getEventByTitle(@PathVariable String title) {
         log.info("GET events by title = {}", title);
-        return addLinksToEvents(eventService.getEventsByTitle(title));
+        return eventService.getEventsByTitle(title);
     }
 
     @GetMapping("/id/{id}")
@@ -82,17 +75,5 @@ public class EventServiceController {
                     return new ResponseEntity<>(eventToUpdate, HttpStatus.OK);
                 })
                 .orElseThrow(EventNotFoundException::new);
-    }
-
-    private CollectionModel<Event> addLinksToEvents(List<Event> events) {
-        List<Event> allEvents = events.stream()
-                .peek(event -> {
-                    Link selfLink = linkTo(this.getClass())
-                            .slash("id").slash(event.getId()).withSelfRel();
-                    event.add(selfLink);
-                })
-                .collect(Collectors.toList());
-        Link link = linkTo(this.getClass()).withSelfRel();
-        return CollectionModel.of(allEvents, link);
     }
 }
