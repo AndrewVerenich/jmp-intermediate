@@ -1,0 +1,22 @@
+{
+  "properties": {
+    "title": {
+      "type": "text"
+    },
+    "eventType": {
+      "type": "keyword"
+    },
+    "dateTime": {
+      "type": "date"
+    },
+    "place": {
+      "type": "text"
+    },
+    "description": {
+      "type": "text"
+    },
+    "subTopics": {
+      "type": "nested"
+    }
+  }
+}

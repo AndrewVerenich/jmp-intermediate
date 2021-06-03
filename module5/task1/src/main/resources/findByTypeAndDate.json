@@ -1,0 +1,12 @@
+{
+  "query": {
+    "match": {
+      "eventType": "?1"
+    },
+    "range": {
+      "dateTime": {
+        "gte": "?2"
+      }
+    }
+  }
+}
