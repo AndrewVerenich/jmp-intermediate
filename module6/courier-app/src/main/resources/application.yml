@@ -1,0 +1,12 @@
+server:
+  port: 7002
+kafka:
+  bootstrap-servers: localhost:9092
+spring:
+  kafka:
+    consumer:
+      enable-auto-commit: false
+    listener:
+
+      ack-mode: manual
+
