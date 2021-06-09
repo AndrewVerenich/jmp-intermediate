@@ -1,0 +1,4 @@
+server:
+  port: 7003
+kafka:
+  bootstrap-servers: localhost:9092
