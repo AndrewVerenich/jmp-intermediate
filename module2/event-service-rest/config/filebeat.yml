@@ -54,7 +54,7 @@ filebeat.inputs:
   # Below are the input specific configurations.
 
   # Type of the files. Based on this the way the file is read is decided.
-  # The different types cannot be mixed in one input
+  # The different types cannot be mixed in common input
   #
   # Possible options are:
   # * log: Reads every line of the log file (default)
