@@ -1,0 +1,48 @@
+version: '2'
+services:
+  zipkin:
+    image: openzipkin/zipkin
+    ports:
+      - "9411:9411"
+
+  graphite:
+    image: graphiteapp/graphite-statsd
+    ports:
+      - "2003:2003"
+
+  discovery:
+    build: ./platform-services/discovery/target
+    ports:
+      - "6001:6001"
+
+  common:
+    build: ./business-services/common/target
+    ports:
+      - "6003:6003"
+    links:
+      - discovery
+
+  apigateway:
+    build: ./platform-services/apigateway/target
+    ports:
+      - "6002:6002"
+    links:
+      - discovery
+
+  one:
+    build: ./business-services/one/target
+    ports:
+      - "6004:6004"
+    links:
+      - zipkin
+      - graphite
+      - discovery
+
+  two:
+    build: ./business-services/two/target
+    ports:
+      - "6005:6005"
+    links:
+      - zipkin
+      - graphite
+      - discovery

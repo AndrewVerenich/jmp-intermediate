@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: apigateway
+  zipkin:
+    enabled: true
+server:
+  port: 6002
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery:6001/eureka/
+zuul:
+  ignoredServices: '*'
+  routes:
+    one: /oneapi/**
+    two: /twoapi/**

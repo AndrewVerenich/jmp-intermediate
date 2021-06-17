@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: two-api
+server:
+  port: 6006

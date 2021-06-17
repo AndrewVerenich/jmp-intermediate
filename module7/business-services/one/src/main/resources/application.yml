@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: one
+  zipkin:
+    enabled: true
+server:
+  port: 6004
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery:6001/eureka/
