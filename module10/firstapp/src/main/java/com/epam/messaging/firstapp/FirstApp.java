@@ -6,12 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.jms.annotation.EnableJms;
+import org.springframework.cloud.aws.autoconfigure.context.ContextStackAutoConfiguration;
 
 import java.util.Scanner;
 
-@SpringBootApplication
-@EnableJms
+@SpringBootApplication(exclude = ContextStackAutoConfiguration.class)
 public class FirstApp implements CommandLineRunner {
 
     public static void main(String[] args) {

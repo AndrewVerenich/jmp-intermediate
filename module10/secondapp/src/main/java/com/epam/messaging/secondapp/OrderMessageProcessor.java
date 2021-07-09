@@ -1,11 +1,14 @@
 package com.epam.messaging.secondapp;
 
+import com.amazonaws.services.sqs.AmazonSQSAsync;
 import com.epam.jmp.messaging.domain.GoodsType;
 import com.epam.jmp.messaging.domain.Order;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.jms.annotation.JmsListener;
-import org.springframework.jms.core.JmsTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.aws.messaging.core.QueueMessagingTemplate;
+import org.springframework.cloud.aws.messaging.listener.SqsMessageDeletionPolicy;
+import org.springframework.cloud.aws.messaging.listener.annotation.SqsListener;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,17 +21,17 @@ public class OrderMessageProcessor {
     private static final String REJECTED_ORDER_QUEUE = "rejected-order-queue";
     private static final double THRESHOLD = 100;
     private static final int MAX_LITERS = 5;
-    private final JmsTemplate jmsTemplate;
 
-    @JmsListener(destination = ORDER_QUEUE, selector = "type = 'LIQUID'")
-    public void receiveLiquidOrder(Order order) {
-        log.info("Received liquid order " + order);
-        processOrder(order);
+    private final QueueMessagingTemplate queueMessagingTemplate;
+
+    @Autowired
+    public OrderMessageProcessor(AmazonSQSAsync amazonSQSAsync) {
+        this.queueMessagingTemplate = new QueueMessagingTemplate(amazonSQSAsync);
     }
 
-    @JmsListener(destination = ORDER_QUEUE, selector = "type = 'COUNTABLE'")
-    public void receiveCountableOrder(Order order) {
-        log.info("Received countable order " + order);
+    @SqsListener(value = ORDER_QUEUE, deletionPolicy = SqsMessageDeletionPolicy.ON_SUCCESS)
+    public void receiveOrder(Order order) {
+        log.info("Received order " + order);
         processOrder(order);
     }
 
@@ -42,10 +45,10 @@ public class OrderMessageProcessor {
     }
 
     private void acceptOrder(Order order) {
-        jmsTemplate.convertAndSend(ACCEPTED_ORDER_QUEUE, order);
+        queueMessagingTemplate.convertAndSend(ACCEPTED_ORDER_QUEUE, order);
     }
 
     private void rejectOrder(Order order) {
-        jmsTemplate.convertAndSend(REJECTED_ORDER_QUEUE, order);
+        queueMessagingTemplate.convertAndSend(REJECTED_ORDER_QUEUE, order);
     }
 }

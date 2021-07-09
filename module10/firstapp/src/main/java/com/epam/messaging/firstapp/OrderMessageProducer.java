@@ -1,8 +1,10 @@
 package com.epam.messaging.firstapp;
 
+import com.amazonaws.services.sqs.AmazonSQSAsync;
 import com.epam.jmp.messaging.domain.Order;
 import lombok.AllArgsConstructor;
-import org.springframework.jms.core.JmsTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.aws.messaging.core.QueueMessagingTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -10,12 +12,14 @@ import org.springframework.stereotype.Component;
 public class OrderMessageProducer {
 
     private static final String ORDER_QUEUE = "order-queue";
-    private final JmsTemplate jmsTemplate;
+    private final QueueMessagingTemplate queueMessagingTemplate;
+
+    @Autowired
+    public OrderMessageProducer(AmazonSQSAsync amazonSQSAsync) {
+        this.queueMessagingTemplate = new QueueMessagingTemplate(amazonSQSAsync);
+    }
 
     public void sendOrderMessage(Order order) {
-        jmsTemplate.convertAndSend(ORDER_QUEUE, order, message -> {
-            message.setStringProperty("type", String.valueOf(order.getGoodsType()));
-            return message;
-        });
+        queueMessagingTemplate.convertAndSend(ORDER_QUEUE, order);
     }
 }
