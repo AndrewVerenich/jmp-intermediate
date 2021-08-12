@@ -1,0 +1,3 @@
+INSERT INTO EVENT (EVENT_TYPE, PLACE, SPEAKER, TITLE, DATE_TIME) VALUES ('Epam conference','Online','Alex','Java','2021-05-13 12:00:00');
+INSERT INTO EVENT (EVENT_TYPE, PLACE, SPEAKER, TITLE, DATE_TIME) VALUES ('Project demo','Teams','Michael','Feature discovery','2021-05-23 17:00:00');
+INSERT INTO EVENT (EVENT_TYPE, PLACE, SPEAKER, TITLE, DATE_TIME) VALUES ('English lesson','Zoom','Kate','Presentation','2021-05-21 10:00:00');
