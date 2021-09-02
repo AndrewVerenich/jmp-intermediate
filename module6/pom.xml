@@ -16,6 +16,7 @@
         <module>palmetto-app</module>
         <module>courier-app</module>
         <module>model</module>
+        <module>kafka-test</module>
     </modules>
 
 

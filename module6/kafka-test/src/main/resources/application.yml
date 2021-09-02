@@ -1,0 +1,29 @@
+server.port: 8087
+logging:
+  level:
+    org:
+      springframework:
+        kafka:
+          listener:
+            KafkaMessageListenerContainer: ERROR
+      apache:
+        kafka:
+          clients:
+            FetchSessionHandler: INFO
+            consumer:
+              internals: INFO
+kafka:
+  payment:
+    bootstrapAddress: localhost:9092
+    groupId: group_id_1
+    enabled: true
+    topics:
+      input: payment
+      dlq: payment.dlq
+
+spring:
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
