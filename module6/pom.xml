@@ -17,6 +17,7 @@
         <module>courier-app</module>
         <module>model</module>
         <module>kafka-test</module>
+        <module>hibernate-test</module>
     </modules>
 
 
