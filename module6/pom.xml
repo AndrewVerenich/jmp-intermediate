@@ -20,6 +20,8 @@
         <module>hibernate-test</module>
         <module>micrometer-test</module>
         <module>spock-test</module>
+        <module>threadpool-test</module>
+        <module>mock-service</module>
     </modules>
 
 
