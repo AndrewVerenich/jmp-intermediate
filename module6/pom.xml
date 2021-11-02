@@ -22,6 +22,7 @@
         <module>spock-test</module>
         <module>threadpool-test</module>
         <module>mock-service</module>
+        <module>odata-test</module>
     </modules>
 
 
