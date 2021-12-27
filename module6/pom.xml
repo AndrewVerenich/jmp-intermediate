@@ -25,6 +25,7 @@
         <module>odata-test</module>
         <module>websockets</module>
         <module>ssl-test</module>
+        <module>http-client</module>
     </modules>
 
 
