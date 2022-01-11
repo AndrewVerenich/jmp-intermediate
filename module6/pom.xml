@@ -26,6 +26,7 @@
         <module>websockets</module>
         <module>ssl-test</module>
         <module>http-client</module>
+        <module>twilio</module>
     </modules>
 
 
