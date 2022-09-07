@@ -20,6 +20,7 @@
         <module>module9</module>
         <module>module10</module>
         <module>module11</module>
+        <module>protocol-buffers</module>
     </modules>
 
 
