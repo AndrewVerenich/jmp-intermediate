@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package model;
+
+option java_package = "com.adnver.protoclbuffers.model";
+option java_outer_classname = "User";
+
+message User {
+  string user_id = 1;
+  string user_name = 2;
+  int32 age = 3;
+}
