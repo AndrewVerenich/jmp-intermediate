@@ -22,26 +22,26 @@
 // * Client side config
 // */
 //@Configuration
-//public class WebSocketConfiguration
+//public class WebSockeTextConfiguration
 //{
 //    @Bean
 //    public WebSocketStompClient webSocketStompClient(List<Transport> transports, ObjectMapper mapper,
-//                                                     MyStompSessionHandler handler)
+//                                                     MyTextSessionHandler handler)
 //    {
-//        SockJsClient sockJsClient = new SockJsClient(transports);
-//        sockJsClient.setMessageCodec(new Jackson2SockJsMessageCodec());
+//        StandardWebSocketClient client = new StandardWebSocketClient();
+////        sockJsClient.setMessageCodec(new Jackson2SockJsMessageCodec());
 ////        sockJsClient.setInfoReceiver((infoUrl, headers) -> "");
 //
-//        WebSocketStompClient result = new WebSocketStompClient(sockJsClient);
-//        MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();
-//        converter.setObjectMapper(mapper);
-//        result.setMessageConverter(converter);
+////        WebSocketStompClient result = new WebSocketStompClient(sockJsClient);
+////        MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();
+////        converter.setObjectMapper(mapper);
+////        result.setMessageConverter(converter);
 //        WebSocketHttpHeaders headers = new WebSocketHttpHeaders();
 //
 //        headers.add("Authorization","Bearer-4619f420-1a40-11ed-c1d1-d8576dd68200");
 //        headers.add("farmId","300000000000003");
-//        result.connect("wss://app-atl.five9.com:443/supsvcs/sws", headers,handler);
-//        return result;
+//        client.doHandshake("wss://app-atl.five9.com:443/supsvcs/sws", headers,handler);
+//        return client;
 //    }
 //
 //    @Bean
