@@ -17,6 +17,7 @@
         <module>courier-app</module>
         <module>model</module>
         <module>kafka-test</module>
+        <module>mapstruct</module>
         <module>hibernate-test</module>
         <module>micrometer-test</module>
         <module>spock-test</module>
