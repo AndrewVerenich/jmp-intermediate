@@ -22,6 +22,7 @@
         <module>module11</module>
         <module>protocol-buffers</module>
         <module>spark</module>
+        <module>testcontainers</module>
     </modules>
 
 
