@@ -23,6 +23,7 @@
         <module>protocol-buffers</module>
         <module>spark</module>
         <module>testcontainers</module>
+        <module>scala-app</module>
     </modules>
 
 
