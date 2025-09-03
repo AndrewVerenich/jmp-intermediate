@@ -1,0 +1,8 @@
+bot:
+  name: my_test_bot
+  token: change_me
+  proxy:
+    host: localhost
+    port: 8080
+
+

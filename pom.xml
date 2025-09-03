@@ -24,6 +24,7 @@
         <module>spark</module>
         <module>testcontainers</module>
         <module>scala-app</module>
+        <module>telegram-bot</module>
     </modules>
 
 
